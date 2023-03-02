@@ -1,0 +1,90 @@
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+}
+
+.nav {
+    background-color: #2b2e51;
+    /* linear-gradient(180deg, #2b2e51 10%, #08060cd4 100%); */
+}
+
+.navbar-top {
+    background-color: #262847;
+}
+
+.container .card-login {
+    margin-top: 20vh;
+}
+
+.ulnav {
+    margin-top: 0px;
+    padding: 0;
+    height: 100vh;
+}
+
+.ulnav li {
+    height: 50px;
+    color: white;
+}
+
+.ulnav li :hover {
+    background-color: black;
+    color: white;
+}
+
+.ulnav li a {
+    text-decoration: none;
+    color: white;
+}
+
+.ulnav .logo {
+    height: 69px;
+    font-size: 16pt;
+    display: flex;
+    margin-bottom: 70px;
+}
+
+.panel-principal a {
+    color: currentColor;
+}
+
+.td-deudas {
+    background-color: blue;
+    margin-top: 50%;
+}
+
+.spring-green {
+    background-color: springgreen;
+}
+
+.titulo {
+    font-family: 'Poppins', sans-serif;
+}
+
+.list-peliculas {
+    background-color: #2b2e51;
+}
+
+.list-peliculas img {
+    height: 400px;
+}
+
+.contenido {
+    /* background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/d54727b4-2ad9-4e71-bb48-0899f55f103a/4f007970-1bfe-472c-a9fb-6b8cfc22d7f7/MX-es-20230220-popsignuptwoweeks-perspective_alpha_website_small.jpg'); */
+    /* background-color: #2b2e51; */
+}
+
+.texto {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14pt;
+    font-weight: 400;
+}
+
+.class-head-title {
+    background-color: #2b2e51;
+}
+
+.word-small-logo{
+    font-size: x-small;
+}
