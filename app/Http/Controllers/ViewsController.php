@@ -38,4 +38,9 @@ class ViewsController extends Controller
         $proveedores = Proveedor::all();
         return view('proveedores', ['proveedores'=>$proveedores]);
     }
+
+    public function ViewNosotros()
+    {
+        return view('nosotros');
+    }
 }

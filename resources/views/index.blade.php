@@ -60,6 +60,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ asset('nosotros') }}">
+                                    <i class="bi bi-building"></i>
+                                    <span data-feather="nosotros" class="align-text-bottom"></span>
+                                    Nosotros
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ asset('clientes') }}">
                                     <i class="bi bi-people-fill"></i>
                                     <span data-feather="file" class="align-text-bottom"></span>
@@ -115,6 +122,7 @@
                             video club Hollywood.</p>
                     </div>
                     <div class="row list-peliculas">
+                        
                         <div class="col-12 col-md-3">
                             <div class="card">
                                 <img class="card-img-top" src="{{ asset('img/1img.jpg') }}" alt="Card image cap">
@@ -173,12 +181,54 @@
                 @show
 
             </div>
+            <div class="col-12 col-md-10 offset-2">
+                <div class="row">
+                    <div class="container-fluid navbar-top contenedor_foot">
+                        <footer class="footer">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+
+                                        <ul>
+                                            <ul>
+                                                <li><a href="https://instagram.com" class="link-light">Instagram
+                                                        <i class="bi bi-instagram"></i></a></li>
+                                                <li><a class="link-light" href="https://youtube.com">Youtube <i
+                                                            class="bi bi-youtube" aria-hidden="true"></i></a></li>
+                                                <li><a class="link-light" href="#">Aviso legal</a></li>
+                                            </ul>
+
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <ul>
+                                            <li><a class="link-light" href="https://facebook.com">Facebook <i
+                                                        class="bi bi-facebook"></i></a></li>
+                                            <li><a class="link-light" href="#">Política de privacidad</a></li>
+                                            <li><a class="link-light" href="#">Términos y condiciones</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col">
+                                        <ul><br>
+                                            <li>
+                                                <h6 class="link-light font-mono">Gracias por su visita.</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+
+                </div>
+            </div>
         </div>
+
     </div>
 </body>
 
 @if (session('autostartmodal') == true)
-    {{session(['autostartmodal'=>false])}}
+    {{ session(['autostartmodal' => false]) }}
     <script>
         $(function() {
             $('#modalNuevoCliente').modal('show');

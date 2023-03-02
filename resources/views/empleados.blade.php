@@ -127,7 +127,7 @@
                 class="bi bi-person"></i></button>
     </div>
     <br>
-    <table class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered" style="margin-bottom: 25%">
         <thead class="table-light">
             <tr>
                 <th scope="col">Nombre</th>

@@ -28,6 +28,7 @@ Route::get('/', function () {
 Route::get('login', [ViewsController::class, 'ViewLogin'])->name('login');
 Route::post('iniciar-sesion', [AdminController::class, 'IniciarSesion'])->name('iniciar-sesion');
 Route::get('logout', [AdminController::class, 'DestroySesion'])->name('logout');
+Route::get('nosotros', [ViewsController::class, 'ViewNosotros'])->name('nosotros')->middleware(AdminMiddleware::class);
 Route::get('clientes', [ViewsController::class, 'ViewClientes'])->name('clientes')->middleware(AdminMiddleware::class);
 Route::get('empleados', [ViewsController::class, 'ViewEmpleados'])->name('empleados')->middleware(AdminMiddleware::class);
 Route::get('peliculas', [ViewsController::class, 'ViewPeliculas'])->name('peliculas')->middleware(AdminMiddleware::class);
