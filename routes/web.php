@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\EmpledosController;
 use App\Http\Controllers\PeliculasController;
@@ -20,9 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->middleware(AdminMiddleware::class);
+Route::get('/', [ViewsController::class, 'ViewIndex'])->middleware(AdminMiddleware::class);
 
 // Route::get('/clientes', ViewsController::class, 'ViewsController@ViewClientes')->name('clientes');
 Route::get('login', [ViewsController::class, 'ViewLogin'])->name('login');
@@ -41,3 +40,4 @@ Route::get('destroy-cliente', [ClientesController::class, 'DestroyCliente'])->na
 Route::get('destroy-empleado', [EmpledosController::class, 'DestroyEmpleado'])->name('destroy-empleado')->middleware(AdminMiddleware::class);
 Route::get('destroy-pelicula', [PeliculasController::class, 'DestroyPelicula'])->name('destroy-pelicula')->middleware(AdminMiddleware::class);
 Route::get('destroy-proveedor', [ProveedoresController::class, 'DestroyProveedor'])->name('destroy-proveedor')->middleware(AdminMiddleware::class);
+Route::get('api-pelis', [ApiController::class, 'getData'])->name('api-pelis');

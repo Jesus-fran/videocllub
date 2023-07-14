@@ -12,7 +12,8 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon-videoclub.ico') }}" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstraps.css"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,6 +27,29 @@
 
     <div class="container-fluid">
         <div class="row">
+
+            <!-- Modal -->
+            <div class="modal fade" id="trailerModal" tabindex="-1" aria-labelledby="trailerModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fs-5" id="trailerModalLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <iframe width="470" height="315" id="body-trailer" src=""
+                                title="triler" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Menú principal -->
             <div class="col-12 col-md-2 col-xl-2 col-xxl-2 p-0 position-fixed">
@@ -107,7 +131,7 @@
                 </nav>
             </div>
 
-
+            {{-- Contenido --}}
             <div class="col-12 col-md-10 offset-2 contenido">
                 <div class="row navbar-top p-0">
                     <div class="col-12 text-center p-0 ">
@@ -118,69 +142,40 @@
                     <div class="row class-head-title">
                         <h1 class="gy-4 titulo text-light">Peliculas</h1>
                         <br>
-                        <p class="text-light texto">Disfruta de películas, series y documentales nunca antes vistos. Solo en
-                            video club Hollywood.</p>
+                        <p class="text-light texto">Disfruta de películas, series y documentales nunca antes vistos.
+                            Solo en video club Hollywood.</p>
                     </div>
-                    <div class="row list-peliculas">
-                        
-                        <div class="col-12 col-md-3">
-                            <div class="card">
-                                <img class="card-img-top" src="{{ asset('img/1img.jpg') }}" alt="Card image cap">
-                                <div class="card-body">
-                                    <h6 class="card-title">Luca (2021)</h6>
-                                    {{-- <p class="card-text">Text</p> --}}
+                    <div class="row gy-3 list-peliculas">
+                        {{-- @dump($peliculas) --}}
+                        @if (sizeof($peliculas) == 1)
+                            <h3 class="text-danger" style="margin-bottom: 400px
+                            ">Lo sentimos,
+                                limite de uso excedido.</h3>
+                        @else
+                            @foreach ($peliculas as $pelicula)
+                                <div class="col-12 col-md-2">
+                                    <div class="card" data-id="{{ $pelicula['id'] }}" data-nombre="{{ $pelicula['title'] }}" onclick="showTrailer(this)">
+                                        <img class="card-img-top" src="{{ $pelicula['image'] }}" alt="Card image cap">
+                                        <div class="card-body pelicula-body">
+                                            <p class="card-text title-pelicula">{{ $pelicula['title'] }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-body-secondary">
+                                                Año: {{ $pelicula['year'] }} &nbsp&nbsp&nbsp <i class="bi bi-star-fill"
+                                                    style="color: rgb(211, 211, 21)"></i> {{ $pelicula['rating'] }}
+                                            </small>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-3">
-                            <div class="card">
-                                <img class="card-img-top" src="{{ asset('img/2img.jpg') }}" alt="Card image cap">
-                                <div class="card-body">
-                                    <h6 class="card-title">Cruella (2021)</h6>
-                                    {{-- <p class="card-text">Text</p> --}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-3">
-                            <div class="card">
-                                <img class="card-img-top" src="{{ asset('img/3img.jpg') }}" alt="Card image cap">
-                                <div class="card-body">
-                                    <h6 class="card-title">Batman - The Long Halloween Parte Uno (2021)</h6>
-                                    {{-- <p class="card-text">Text</p> --}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-3">
-                            <div class="card">
-                                <img class="card-img-top" src="{{ asset('img/4img.jpg') }}" alt="Card image cap">
-                                <div class="card-body">
-                                    <h6 class="card-title">Caos - El Inicio (2021)</h6>
-                                    {{-- <p class="card-text">Text</p> --}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-3">
-                            <div class="card">
-                                <img class="card-img-top" src="{{ asset('img/5img.jpg') }}" alt="Card image cap">
-                                <div class="card-body">
-                                    <h6 class="card-title">Godzilla vs Kong (2021)</h6>
-                                    {{-- <p class="card-text">Text</p> --}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-3">
-                            <div class="card">
-                                <img class="card-img-top" src="{{ asset('img/6img.jpg') }}" alt="Card image cap">
-                                <div class="card-body">
-                                    <h6 class="card-title">Army of the Dead (2021)</h6>
-                                    {{-- <p class="card-text">Text</p> --}}
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 @show
 
             </div>
+
+
+            {{-- Footer --}}
             <div class="col-12 col-md-10 offset-2">
                 <div class="row">
                     <div class="container-fluid navbar-top contenedor_foot">
@@ -236,6 +231,7 @@
         })
     </script>;
 @endif
-
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="{{ asset('js/js.js') }}"></script>
 
 </html>
