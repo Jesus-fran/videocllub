@@ -58,8 +58,8 @@ class ViewsController extends Controller
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => [
                 "X-RapidAPI-Host: imdb-top-100-movies.p.rapidapi.com",
-                "X-RapidAPI-Key: a8f328fe37msh87443bf47cb29dfp1d3c08jsn08669a02c213"
-                // "X-RapidAPI-Key: 22c6ffb9f7msh896c554133c3ae3p126471jsnf27ef680a236"
+                // "X-RapidAPI-Key: a8f328fe37msh87443bf47cb29dfp1d3c08jsn08669a02c213"
+                "X-RapidAPI-Key: 22c6ffb9f7msh896c554133c3ae3p126471jsnf27ef680a236"
             ],
         ]);
 
@@ -109,4 +109,9 @@ class ViewsController extends Controller
             return view("index", ['searchedpeliculas' => json_decode($response, true)]);
         }
     }
+
+    public function showCines(){
+        return view('cines');
+    }
 }
+

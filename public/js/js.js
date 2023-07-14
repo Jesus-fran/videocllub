@@ -1,9 +1,10 @@
 function showTrailer(element) {
-
+    $('#body-trailer').attr('src', "");
     $('#trailerModal').modal('show');
     let id = $(element).data('id');
     let nombre = $(element).data('nombre');
     $('#trailerModalLabel').html(nombre);
+    $('#cargando').show();
     
     const settings = {
         async: true,
@@ -17,6 +18,7 @@ function showTrailer(element) {
     };
 
     $.ajax(settings).done(function (response) {
+        $('#cargando').hide();
         console.log(response);
         let trailer = response['trailer'];
         $('#body-trailer').attr('src', trailer);
@@ -29,4 +31,7 @@ function home(){
 
 function searchCine(){
     console.log("Buscando cines");
+    window.location.href = "/cines";
 }
+
+

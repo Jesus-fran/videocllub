@@ -39,10 +39,16 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            <div id="cargando" style="text-align: center; margin-top: 200px">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
                             <iframe width="470" height="315" id="body-trailer" src="" title="triler"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
+                          
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -142,13 +148,12 @@
                     <div class="row class-head-title">
                         <h1 class="gy-4 titulo text-light">Peliculas</h1>
                         <br>
-
                         <div class="col-12">
                             <form action="{{ route('search-peli') }}" method="POST">
                                 @csrf
                                 <div class="input-group input-group-lg">
-                                
-                                    @if (isset($searchedpeliculas))
+
+                                    @if (isset($searchedpeliculas) && isset($searchedpeliculas['results'][0]))
                                         <input type="text" name="keyword" class="form-control"
                                             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
                                             placeholder="Busca una pelicula"
@@ -163,7 +168,6 @@
                                         onclick="home()">X</span>
                                 </div>
                             </form>
-
                         </div>
                         <br>
                         <br>
@@ -308,7 +312,9 @@
         })
     </script>;
 @endif
+
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="{{ asset('js/js.js') }}"></script>
+
 
 </html>

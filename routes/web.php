@@ -21,24 +21,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ViewsController::class, 'ViewIndex'])->middleware(AdminMiddleware::class);
+// Route::get('/', [ViewsController::class, 'ViewIndex'])->middleware(AdminMiddleware::class);
+Route::get('/', [ViewsController::class, 'ViewIndex']);
 
 // Route::get('/clientes', ViewsController::class, 'ViewsController@ViewClientes')->name('clientes');
 Route::get('login', [ViewsController::class, 'ViewLogin'])->name('login');
 Route::post('iniciar-sesion', [AdminController::class, 'IniciarSesion'])->name('iniciar-sesion');
 Route::get('logout', [AdminController::class, 'DestroySesion'])->name('logout');
-Route::get('nosotros', [ViewsController::class, 'ViewNosotros'])->name('nosotros')->middleware(AdminMiddleware::class);
-Route::get('clientes', [ViewsController::class, 'ViewClientes'])->name('clientes')->middleware(AdminMiddleware::class);
-Route::get('empleados', [ViewsController::class, 'ViewEmpleados'])->name('empleados')->middleware(AdminMiddleware::class);
-Route::get('peliculas', [ViewsController::class, 'ViewPeliculas'])->name('peliculas')->middleware(AdminMiddleware::class);
-Route::get('proveedores', [ViewsController::class, 'ViewProveedores'])->name('proveedores')->middleware(AdminMiddleware::class);
-Route::post('registrar-cliente', [ClientesController::class, 'RegistrarCliente'])->name('registrar-cliente')->middleware(AdminMiddleware::class);
-Route::post('registrar-empleado', [EmpledosController::class, 'RegistrarEmpleado'])->name('registrar-empleado')->middleware(AdminMiddleware::class);
-Route::post('registrar-pelicula', [PeliculasController::class, 'Registrarpelicula'])->name('registrar-pelicula')->middleware(AdminMiddleware::class);
-Route::post('registrar-proveedor', [ProveedoresController::class, 'Registrarproveedor'])->name('registrar-proveedor')->middleware(AdminMiddleware::class);
-Route::get('destroy-cliente', [ClientesController::class, 'DestroyCliente'])->name('destroy-cliente')->middleware(AdminMiddleware::class);
-Route::get('destroy-empleado', [EmpledosController::class, 'DestroyEmpleado'])->name('destroy-empleado')->middleware(AdminMiddleware::class);
-Route::get('destroy-pelicula', [PeliculasController::class, 'DestroyPelicula'])->name('destroy-pelicula')->middleware(AdminMiddleware::class);
-Route::get('destroy-proveedor', [ProveedoresController::class, 'DestroyProveedor'])->name('destroy-proveedor')->middleware(AdminMiddleware::class);
+Route::get('nosotros', [ViewsController::class, 'ViewNosotros'])->name('nosotros');
+Route::get('clientes', [ViewsController::class, 'ViewClientes'])->name('clientes');
+Route::get('empleados', [ViewsController::class, 'ViewEmpleados'])->name('empleados');
+Route::get('peliculas', [ViewsController::class, 'ViewPeliculas'])->name('peliculas');
+Route::get('proveedores', [ViewsController::class, 'ViewProveedores'])->name('proveedores');
+Route::post('registrar-cliente', [ClientesController::class, 'RegistrarCliente'])->name('registrar-cliente');
+Route::post('registrar-empleado', [EmpledosController::class, 'RegistrarEmpleado'])->name('registrar-empleado');
+Route::post('registrar-pelicula', [PeliculasController::class, 'Registrarpelicula'])->name('registrar-pelicula');
+Route::post('registrar-proveedor', [ProveedoresController::class, 'Registrarproveedor'])->name('registrar-proveedor');
+Route::get('destroy-cliente', [ClientesController::class, 'DestroyCliente'])->name('destroy-cliente');
+Route::get('destroy-empleado', [EmpledosController::class, 'DestroyEmpleado'])->name('destroy-empleado');
+Route::get('destroy-pelicula', [PeliculasController::class, 'DestroyPelicula'])->name('destroy-pelicula');
+Route::get('destroy-proveedor', [ProveedoresController::class, 'DestroyProveedor'])->name('destroy-proveedor');
 Route::get('api-pelis', [ApiController::class, 'getData'])->name('api-pelis');
 Route::post('search-peli', [ViewsController::class, 'searchPelicula'])->name('search-peli');
+Route::get('cines', [ViewsController::class, 'showCines'])->name('cines');

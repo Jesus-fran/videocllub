@@ -101,3 +101,9 @@ a:active {
     font-size: 9pt;
     font-weight: bold;
 }
+
+
+#map{
+    width: 90%;
+    height: 500px;
+}
