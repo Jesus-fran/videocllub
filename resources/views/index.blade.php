@@ -39,8 +39,8 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <iframe width="470" height="315" id="body-trailer" src=""
-                                title="triler" frameborder="0"
+                            <iframe width="470" height="315" id="body-trailer" src="" title="triler"
+                                frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                         </div>
@@ -142,33 +142,110 @@
                     <div class="row class-head-title">
                         <h1 class="gy-4 titulo text-light">Peliculas</h1>
                         <br>
-                        <p class="text-light texto">Disfruta de películas, series y documentales nunca antes vistos.
-                            Solo en video club Hollywood.</p>
+
+                        <div class="col-12">
+                            <form action="{{ route('search-peli') }}" method="POST">
+                                @csrf
+                                <div class="input-group input-group-lg">
+                                
+                                    @if (isset($searchedpeliculas))
+                                        <input type="text" name="keyword" class="form-control"
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
+                                            placeholder="Busca una pelicula"
+                                            value="{{ $searchedpeliculas['results'][0]['originalTitleText']['text'] }}">
+                                    @else
+                                        <input type="text" name="keyword" class="form-control"
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
+                                            placeholder="Busca una pelicula">
+                                    @endif
+
+                                    <span class="input-group-text" id="basic-addon2" style="cursor: pointer"
+                                        onclick="home()">X</span>
+                                </div>
+                            </form>
+
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-12 gy-2">
+                            <button class="btn btn-primary" onclick="home()"><i
+                                    class="bi bi-house"></i>&nbspInicio</button>
+                            <button class="btn btn-success" onclick="home()"><i
+                                    class="bi bi-camera-reels-fill"></i>&nbspExplorar más</button>
+                            <button class="btn btn-dark" onclick="home()"><i class="bi bi-film"></i>&nbspLas mejores
+                                peliculas</button>
+                            <button class="btn btn-danger" onclick="searchCine()"><i
+                                    class="bi bi-geo-alt-fill"></i>&nbspCines mas cercanos</button>
+                        </div>
+                        <div class="col-12 gy-2">
+                            <p class="text-light texto">Disfruta de películas, series y documentales nunca antes vistos.
+                                Solo en video club Hollywood.</p>
+                        </div>
                     </div>
                     <div class="row gy-3 list-peliculas">
                         {{-- @dump($peliculas) --}}
-                        @if (sizeof($peliculas) == 1)
-                            <h3 class="text-danger" style="margin-bottom: 400px
-                            ">Lo sentimos,
-                                limite de uso excedido.</h3>
-                        @else
-                            @foreach ($peliculas as $pelicula)
-                                <div class="col-12 col-md-2">
-                                    <div class="card" data-id="{{ $pelicula['id'] }}" data-nombre="{{ $pelicula['title'] }}" onclick="showTrailer(this)">
-                                        <img class="card-img-top" src="{{ $pelicula['image'] }}" alt="Card image cap">
-                                        <div class="card-body pelicula-body">
-                                            <p class="card-text title-pelicula">{{ $pelicula['title'] }}</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <small class="text-body-secondary">
-                                                Año: {{ $pelicula['year'] }} &nbsp&nbsp&nbsp <i class="bi bi-star-fill"
-                                                    style="color: rgb(211, 211, 21)"></i> {{ $pelicula['rating'] }}
-                                            </small>
+
+                        @isset($peliculas)
+                            @if (sizeof($peliculas) == 1)
+                                <h3 class="text-danger" style="margin-bottom: 400px
+                        ">Lo sentimos,
+                                    limite de uso excedido.</h3>
+                            @else
+                                @foreach ($peliculas as $pelicula)
+                                    <div class="col-12 col-md-2">
+                                        <div class="card" data-id="{{ $pelicula['id'] }}"
+                                            data-nombre="{{ $pelicula['title'] }}" onclick="showTrailer(this)">
+                                            <img class="card-img-top" src="{{ $pelicula['image'] }}" alt="Card image cap">
+                                            <div class="card-body pelicula-body">
+                                                <p class="card-text title-pelicula">{{ $pelicula['title'] }}</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <small class="text-body-secondary">
+                                                    Año: {{ $pelicula['year'] }} &nbsp&nbsp&nbsp <i class="bi bi-star-fill"
+                                                        style="color: rgb(211, 211, 21)"></i> {{ $pelicula['rating'] }}
+                                                </small>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
-                        @endif
+                                @endforeach
+                            @endif
+                        @endisset
+
+                        @isset($searchedpeliculas)
+                            @if (sizeof($searchedpeliculas['results']) == 0)
+                                <h3 class="text-danger" style="margin-bottom: 400px
+                        ">Sin resultados.
+                                </h3>
+                            @else
+                                @foreach ($searchedpeliculas['results'] as $pelicula)
+                                    <div class="col-12 col-md-2">
+                                        <div class="card" data-nombre="{{ $pelicula['originalTitleText']['text'] }}">
+                                            @if (isset($pelicula['primaryImage']['url']))
+                                                <img class="card-img-top" src="{{ $pelicula['primaryImage']['url'] }}"
+                                                    alt="Card image cap">
+                                            @else
+                                                <img class="card-img-top"
+                                                    src="https://previews.123rf.com/images/sn333g/sn333g1503/sn333g150300006/37453368-cine-logo-roll-vector-cine-negro-y-la-pel%C3%ADcula-elemento-de-dise%C3%B1o-o-el-icono.jpg"
+                                                    alt="Card image cap">
+                                            @endif
+                                            <div class="card-body pelicula-body">
+                                                <p class="card-text title-pelicula">
+                                                    {{ $pelicula['originalTitleText']['text'] }}</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <small class="text-body-secondary">
+                                                    @if (isset($pelicula['releaseYear']['year']))
+                                                        Año: {{ $pelicula['releaseYear']['year'] }}
+                                                    @else
+                                                        Año: desconocido
+                                                    @endif
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                        @endisset
                     </div>
                 @show
 

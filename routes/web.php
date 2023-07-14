@@ -41,3 +41,4 @@ Route::get('destroy-empleado', [EmpledosController::class, 'DestroyEmpleado'])->
 Route::get('destroy-pelicula', [PeliculasController::class, 'DestroyPelicula'])->name('destroy-pelicula')->middleware(AdminMiddleware::class);
 Route::get('destroy-proveedor', [ProveedoresController::class, 'DestroyProveedor'])->name('destroy-proveedor')->middleware(AdminMiddleware::class);
 Route::get('api-pelis', [ApiController::class, 'getData'])->name('api-pelis');
+Route::post('search-peli', [ViewsController::class, 'searchPelicula'])->name('search-peli');

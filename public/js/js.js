@@ -22,3 +22,11 @@ function showTrailer(element) {
         $('#body-trailer').attr('src', trailer);
     });
 }
+
+function home(){
+    window.location.href = "/";
+}
+
+function searchCine(){
+    console.log("Buscando cines");
+}

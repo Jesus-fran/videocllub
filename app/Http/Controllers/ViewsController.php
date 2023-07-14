@@ -58,8 +58,8 @@ class ViewsController extends Controller
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => [
                 "X-RapidAPI-Host: imdb-top-100-movies.p.rapidapi.com",
-                // "X-RapidAPI-Key: a8f328fe37msh87443bf47cb29dfp1d3c08jsn08669a02c213"
-                "X-RapidAPI-Key: 22c6ffb9f7msh896c554133c3ae3p126471jsnf27ef680a236"
+                "X-RapidAPI-Key: a8f328fe37msh87443bf47cb29dfp1d3c08jsn08669a02c213"
+                // "X-RapidAPI-Key: 22c6ffb9f7msh896c554133c3ae3p126471jsnf27ef680a236"
             ],
         ]);
 
@@ -71,7 +71,42 @@ class ViewsController extends Controller
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            return view("index", ['peliculas'=>json_decode($response,true)]);
+            return view("index", ['peliculas' => json_decode($response, true)]);
+        }
+    }
+
+    public function searchPelicula(Request $request)
+    {
+
+        $titleMovie = $request->keyword;
+
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://moviesdatabase.p.rapidapi.com/titles/search/title/".$titleMovie.
+            "?exact=true&titleType=movie",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => [
+                "X-RapidAPI-Host: moviesdatabase.p.rapidapi.com",
+                "X-RapidAPI-Key: a8f328fe37msh87443bf47cb29dfp1d3c08jsn08669a02c213"
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            return view("index", ['searchedpeliculas' => json_decode($response, true)]);
         }
     }
 }
